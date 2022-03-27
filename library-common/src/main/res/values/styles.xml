@@ -1,0 +1,8 @@
+<resources>
+
+    <!--popwindow动画:顶部下落收起-->
+    <style name="common_popuWindowAnimStyleForTop">
+        <item name="android:windowEnterAnimation">@anim/common_drapdown</item>
+        <item name="android:windowExitAnimation">@anim/common_drapup</item>
+    </style>
+</resources>

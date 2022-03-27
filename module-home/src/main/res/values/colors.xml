@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#B5DFDB</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="home_green">#45BD4A</color>
+    <color name="home_red">#CD0606</color>
+
+    <color name="home_lighter_gray">#ddd</color>
+    <color name="home_recycle_bg">#F5F5F5</color>
+    <color name="home_header_bg">#FAFAFA</color>
+
+</resources>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">module-home</string>
+
+    <string name="home_percent">%</string>
+    <string name="home_tobe_vip">成为会员可查看详情</string>
+    <string name="home_up_down_predict">涨跌预测</string>
+    <string name="home_reason">理由：</string>
+</resources>

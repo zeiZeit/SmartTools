@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="common_color_small_text">#9d9f9f</color>
+    <color name="common_color_bar">#fafafa</color>
+    <color name="common_color_blue">#5790da</color>
+    <color name="common_accent_red">#F52D2D</color>
+    <color name="common_accent_blue">#007AFF</color>
+    <color name="common_white">#ffffffff</color>
+    <color name="common_color_text_gray">#656565</color>
+    <color name="common_colorWhite">#FFFFFF</color>
+    <color name="common_colorBlacklight">#363636</color>
+    <color name="common_text_main">#000000</color>
+    <color name="common_text_small1">#888888</color>
+    <color name="common_text_small2">#666666</color>
+    <color name="common_text_small3">#999999</color>
+    <color name="common_blue_30">#4D007AFF</color>
+    <color name="common_blue_10">#1A007AFF</color>
+    <color name="common_bg_window_grep">#f8f8f8</color>
+    <color name="common_blue_pop">#4194FF</color>
+
+</resources>
