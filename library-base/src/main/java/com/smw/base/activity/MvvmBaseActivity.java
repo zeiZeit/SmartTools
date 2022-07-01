@@ -12,6 +12,7 @@ import androidx.databinding.ViewDataBinding;
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
+import com.smw.base.R;
 import com.smw.base.loadsir.EmptyCallback;
 import com.smw.base.loadsir.ErrorCallback;
 import com.smw.base.loadsir.LoadingCallback;
@@ -36,6 +37,8 @@ public abstract class MvvmBaseActivity<V extends ViewDataBinding, VM extends IMv
     protected V viewDataBinding;
     
     protected LoadService mLoadService;
+
+    protected abstract void doBusiness();
     
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -43,6 +46,7 @@ public abstract class MvvmBaseActivity<V extends ViewDataBinding, VM extends IMv
         super.onCreate(savedInstanceState);
         initViewModel();
         performDataBinding();
+        doBusiness();
     }
 
     @Override
@@ -88,7 +92,7 @@ public abstract class MvvmBaseActivity<V extends ViewDataBinding, VM extends IMv
 
     }
 
-    private boolean isShowedContent = false;
+    private boolean isShowedContent = true;
     
     @Override
     public void showContent()
@@ -105,6 +109,7 @@ public abstract class MvvmBaseActivity<V extends ViewDataBinding, VM extends IMv
     {
         if (null != mLoadService)
         {
+            isShowedContent = false;
             mLoadService.showCallback(LoadingCallback.class);
         }
     }
@@ -114,21 +119,30 @@ public abstract class MvvmBaseActivity<V extends ViewDataBinding, VM extends IMv
     {
         if (null != mLoadService)
         {
+            isShowedContent = false;
             mLoadService.showCallback(EmptyCallback.class);
         }
     }
 
     @Override
-    public void showFailure(String message)
-    {
-        if (null != mLoadService)
-        {
-            if (!isShowedContent)
-            {
-                mLoadService.showCallback(ErrorCallback.class);
+    public void onBackPressed() {
+        if (mLoadService!=null&&mLoadService.isLoading()){
+            showContent();
+            if (viewModel!=null){
+                viewModel.cancelRequest();
             }
-            else
-            {
+        }else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public void showFailure(String message) {
+        if (null != mLoadService) {
+            if (!isShowedContent) {
+                isShowedContent = false;
+                mLoadService.showCallback(ErrorCallback.class);
+            } else {
                 ToastUtil.show(this, message);
             }
         }

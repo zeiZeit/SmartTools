@@ -12,6 +12,9 @@ import com.limpoxe.support.servicemanager.compat.BundleCompat;
 import com.limpoxe.support.servicemanager.compat.ContentProviderCompat;
 import com.limpoxe.support.servicemanager.local.ServicePool;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * Created by zeiZeit on 16/6/3.
  */
@@ -92,13 +95,19 @@ public class ServiceManager {
             @Override
             public Object getServiceInstance() {
                 try {
-                    return classloader.loadClass(className).newInstance();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
+                    Constructor constructor =  classloader.loadClass(className).getDeclaredConstructors()[0];
+                    constructor.setAccessible(true);
+                    Object obj = constructor.newInstance();
+                    constructor.setAccessible(false);
+                    return obj;
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
+                } catch (IllegalAccessException illegalAccessException) {
+                    illegalAccessException.printStackTrace();
+                } catch (InstantiationException instantiationException) {
+                    instantiationException.printStackTrace();
+                } catch (InvocationTargetException invocationTargetException) {
+                    invocationTargetException.printStackTrace();
                 }
                 return null;
             }

@@ -93,6 +93,7 @@ public abstract class BaseRequest<R extends BaseRequest> {
     protected ApiService apiManager;                                       //通用的的api接口
     protected OkHttpClient okHttpClient;
     protected Context context;
+    private boolean needOldParam = false;                                   //是否需要加密前的参数
     private boolean sign = false;                                          //是否需要签名
     private boolean timeStamp = false;                                     //是否需要追加时间戳
     private boolean accessToken = false;                                   //是否需要追加token
@@ -350,6 +351,10 @@ public abstract class BaseRequest<R extends BaseRequest> {
         return (R) this;
     }
 
+    public R oldParam(boolean oldParam) {
+        this.needOldParam = oldParam;
+        return (R) this;
+    }
     public R timeStamp(boolean timeStamp) {
         this.timeStamp = timeStamp;
         return (R) this;
@@ -392,7 +397,7 @@ public abstract class BaseRequest<R extends BaseRequest> {
             OkHttpClient.Builder builder = EasyHttp.getOkHttpClientBuilder();
             for (Interceptor interceptor : builder.interceptors()) {
                 if (interceptor instanceof BaseDynamicInterceptor) {
-                    ((BaseDynamicInterceptor) interceptor).sign(sign).timeStamp(timeStamp).accessToken(accessToken);
+                    ((BaseDynamicInterceptor) interceptor).sign(sign).timeStamp(timeStamp).accessToken(accessToken).needOldParam(needOldParam);
                 }
             }
             return builder;
@@ -415,13 +420,13 @@ public abstract class BaseRequest<R extends BaseRequest> {
 
             for (Interceptor interceptor : interceptors) {
                 if (interceptor instanceof BaseDynamicInterceptor) {
-                    ((BaseDynamicInterceptor) interceptor).sign(sign).timeStamp(timeStamp).accessToken(accessToken);
+                    ((BaseDynamicInterceptor) interceptor).sign(sign).timeStamp(timeStamp).accessToken(accessToken).needOldParam(needOldParam);
                 }
                 newClientBuilder.addInterceptor(interceptor);
             }
             for (Interceptor interceptor : newClientBuilder.interceptors()) {
                 if (interceptor instanceof BaseDynamicInterceptor) {
-                    ((BaseDynamicInterceptor) interceptor).sign(sign).timeStamp(timeStamp).accessToken(accessToken);
+                    ((BaseDynamicInterceptor) interceptor).sign(sign).timeStamp(timeStamp).accessToken(accessToken).needOldParam(needOldParam);
                 }
             }
             if (networkInterceptors.size() > 0) {

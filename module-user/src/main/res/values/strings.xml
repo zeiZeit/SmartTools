@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">module-user</string>
+    <string name="user_not_login">未登录</string>
+    <string name="user_empty"></string>
+    <!-- Strings related to login -->
+</resources>

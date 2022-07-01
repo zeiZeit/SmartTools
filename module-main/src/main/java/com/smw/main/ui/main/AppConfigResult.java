@@ -1,10 +1,8 @@
 package com.smw.main.ui.main;
 
 import com.smw.common.contract.AppConfig;
-import com.smw.common.contract.BaseCustomViewModel;
-import com.smw.common.contract.StocksInfo;
+import com.smw.common.contract.BaseBean;
 
-public class AppConfigResult extends BaseCustomViewModel {
+public class AppConfigResult extends BaseBean {
     AppConfig appConfig;
-    StocksInfo stocksInfo;
 }

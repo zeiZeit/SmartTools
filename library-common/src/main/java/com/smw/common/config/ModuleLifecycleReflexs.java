@@ -19,7 +19,7 @@ public class ModuleLifecycleReflexs
         "com.smw.main.application.MainModuleInit";
 
     /**用户组件初始化*/
-//    private static final String UserInit = "com.smw.user.UserModuleInit";
+    private static final String UserInit = "com.smw.user.config.UserModuleInit";
     
-    public static String[] initModuleNames = {BaseInit, MainInit/*,UserInit*/};
+    public static String[] initModuleNames = {BaseInit, MainInit,UserInit};
 }

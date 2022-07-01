@@ -16,8 +16,7 @@ import com.smw.base.storage.MmkvHelper;
 import com.smw.base.utils.SerializeUtil;
 import com.smw.common.adapter.ScreenAutoAdapter;
 import com.smw.common.contract.AppConfig;
-import com.smw.common.contract.BaseCustomViewModel;
-import com.smw.common.contract.StocksInfo;
+import com.smw.common.contract.BaseBean;
 import com.smw.common.router.RouterActivityPath;
 import com.smw.common.router.RouterFragmentPath;
 import com.smw.main.R;
@@ -63,16 +62,15 @@ public class MainActivity
     }
 
     @Override
+    protected void doBusiness() {
+
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {
         ScreenAutoAdapter.match(this, 375.0f);
         super.onCreate(savedInstanceState);
-//        ImmersionBar.with(this)
-//            .statusBarColor(R.color.main_color_bar)
-//            .navigationBarColor(R.color.main_color_bar)
-//            .fitsSystemWindows(true)
-//            .autoDarkModeEnable(true)
-//            .init();
         initView();
         initFragment();
         loadConfig();
@@ -86,8 +84,8 @@ public class MainActivity
     private void initView()
     {
         mNavigationController = viewDataBinding.bottomView.material()
-            .addItem(R.drawable.main_select,
-                "双录",
+            .addItem(R.drawable.ic_contract,
+                "合同",
                 ColorUtils.getColor(this, R.color.main_bottom_check_color))
 //            .addItem(R.drawable.main_news,
 //                "BB",
@@ -95,12 +93,13 @@ public class MainActivity
 //            .addItem(R.drawable.main_practice,
 //                "cc",
 //                ColorUtils.getColor(this, R.color.main_bottom_check_color))
-//            .addItem(R.drawable.main_mine,
-//                "dd",
-//                ColorUtils.getColor(this, R.color.main_bottom_check_color))
+            .addItem(R.drawable.ic_user, "我的",
+                ColorUtils.getColor(this, R.color.main_bottom_check_color))
             .setDefaultColor(
                 ColorUtils.getColor(this, R.color.main_bottom_default_color))
             .enableAnimateLayoutChanges()
+                .dontTintIcon()
+                .enableAnimateLayoutChanges()
             .build();
 //        mNavigationController.setHasMessage(2, true);
 //        mNavigationController.setMessageNumber(3, 6);
@@ -115,10 +114,10 @@ public class MainActivity
     {
         fragments = new ArrayList<>();
         //通过ARouter 获取其他组件提供的fragment
-        Fragment homeFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Select.PAGER_SELECT).navigation();
-//        Fragment userFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.User.PAGER_USER).navigation();
+        Fragment homeFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Contract.PAGER_CONTRACT_INDEX).navigation();
+        Fragment userFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.User.PAGER_USER).navigation();
         fragments.add(homeFragment);
-//        fragments.add(userFragment);
+        fragments.add(userFragment);
         adapter.setData(fragments);
     }
     
@@ -135,8 +134,7 @@ public class MainActivity
     }
     
     @Override
-    protected void onRetryBtnClick()
-    {
+    protected void onRetryBtnClick(){
         
     }
 
@@ -146,7 +144,7 @@ public class MainActivity
     }
 
     @Override
-    public void onAppConfigFinish(BaseCustomViewModel viewModel) {
+    public void onAppConfigFinish(BaseBean viewModel) {
         AppConfigResult appConfigResult = (AppConfigResult) viewModel;
         if (appConfigResult.appConfig!=null){
             if (appConfigResult.appConfig.getV() > AppConfig.getInstance().getV()){
@@ -157,16 +155,6 @@ public class MainActivity
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
-        }
-        if (appConfigResult.stocksInfo!=null){
-            try {
-                StocksInfo.init(appConfigResult.stocksInfo);
-                String infoStr = SerializeUtil.serialize(appConfigResult.stocksInfo);
-                MmkvHelper.getInstance().getMmkv().encode("stockInfo",infoStr);
-                MmkvHelper.getInstance().getMmkv().encode("STOCK_INFO_UPDATE_TIME",System.currentTimeMillis());
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }

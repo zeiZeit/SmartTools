@@ -75,7 +75,7 @@ dependencies {
     api 'com.github.zhpanvip:BannerViewPager:2.6.6'
     api 'com.github.zhpanvip:viewpagerindicator:1.0.0'
     // 圆角控件
-    api 'com.github.KuangGang:RoundCorners:2.0.0'
+    api 'com.github.AnJiaoDe:AndroidNecessaryView:V1.0.1'
 
     // room
     def room_version = "2.2.5"

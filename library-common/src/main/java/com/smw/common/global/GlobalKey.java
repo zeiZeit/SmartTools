@@ -12,6 +12,6 @@ package com.smw.common.global;
 public class GlobalKey
 {
     /** 用户信息 */
-    public static final String USER_INFO = "user_info";
+    public static final String USER_INFO_UPDATE = "user_info_update";
     
 }

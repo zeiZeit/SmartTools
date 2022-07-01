@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.smw.common.utils.StringUtils"/>
+        <variable
+            name="user"
+            type="com.smw.user.data.model.UserInfo" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_top"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            >
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/user_ic_notice"
+                />
+
+            <com.smw.common.views.MediumTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:text="我的"
+                android:textColor="@color/common_text_main"
+                android:textSize="17sp"
+                android:gravity="center"
+                />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/user_ic_setting"
+                />
+
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/ll_top"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp">
+
+                <com.cy.necessaryview.shapeview.RecShapeLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/common_white"
+                    android:orientation="vertical"
+                    app:colorCenter="#03A9F4"
+                    app:colorEnd="#2196F3"
+                    app:colorFill="@color/common_white"
+                    app:colorStart="#00BCD4"
+                    app:radiusCorner="8dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cs_user"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp">
+
+                        <ImageView
+                            android:id="@+id/iv_head"
+                            imageHeadUrl="@{user.head_image}"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/common_icon_avatar_logout"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.smw.common.views.MediumTextView
+                            android:id="@+id/tv_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:text="@{StringUtils.isNullOrEmpty(user.user_name)?@string/user_not_login:user.user_name}"
+                            android:textColor="@color/common_text_main"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toTopOf="@id/tv_phone"
+                            app:layout_constraintStart_toEndOf="@id/iv_head"
+                            app:layout_constraintTop_toTopOf="@id/iv_head" />
+
+                        <TextView
+                            android:id="@+id/tv_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:text="@{user.telephone}"
+                            android:textColor="@color/common_text_main"
+                            android:textSize="13sp"
+                            app:layout_constraintBottom_toBottomOf="@id/iv_head"
+                            app:layout_constraintStart_toEndOf="@id/iv_head"
+                            app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+                </com.cy.necessaryview.shapeview.RecShapeLinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
+
+</layout>

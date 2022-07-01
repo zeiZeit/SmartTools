@@ -64,6 +64,13 @@ public  abstract class MvmBaseViewModel<V, M extends SuperBaseModel> extends Vie
         }
     }
 
+    @Override
+    public void cancelRequest() {
+        if (null != model)
+        {
+            model.cancel();
+        }
+    }
 
     protected void loadData(){
 

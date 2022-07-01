@@ -29,4 +29,6 @@ public interface IMvvmBaseViewModel<V> {
      * 解除关联
      * */
     void detachUi();
+
+    void cancelRequest();
 }

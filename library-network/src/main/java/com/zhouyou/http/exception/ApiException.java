@@ -84,8 +84,10 @@ public class ApiException extends Exception {
             return false;
         if (apiResult.isOk() /*|| ignoreSomeIssue(apiResult.getCode())*/)
             return true;
-        else
+        else{
             return false;
+        }
+
     }
 
     public static ApiException handleException(Throwable e) {

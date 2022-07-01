@@ -1,8 +1,13 @@
 package com.smw.app;
 
+import com.kingja.loadsir.core.LoadSir;
 import com.smw.base.BuildConfig;
 import com.smw.base.base.BaseApplication;
 
+import com.smw.base.loadsir.EmptyCallback;
+import com.smw.base.loadsir.ErrorCallback;
+import com.smw.base.loadsir.LoadingCallback;
+import com.smw.base.loadsir.TimeoutCallback;
 import com.smw.common.config.ModuleLifecycleConfig;
 
 /**
@@ -23,6 +28,7 @@ public class App extends BaseApplication
         super.onCreate();
         setsDebug(BuildConfig.DEBUG);
         // 初始化需要初始化的组件
+
         ModuleLifecycleConfig.getInstance().initModuleAhead(this);
         mApp = this;
 

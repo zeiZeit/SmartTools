@@ -4,7 +4,12 @@ package com.smw.common;
 import androidx.annotation.Nullable;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.kingja.loadsir.core.LoadSir;
 import com.smw.base.base.BaseApplication;
+import com.smw.base.loadsir.EmptyCallback;
+import com.smw.base.loadsir.ErrorCallback;
+import com.smw.base.loadsir.LoadingCallback;
+import com.smw.base.loadsir.TimeoutCallback;
 import com.smw.common.utils.Utils;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;

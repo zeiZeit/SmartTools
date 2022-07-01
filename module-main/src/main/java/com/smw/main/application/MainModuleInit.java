@@ -1,6 +1,7 @@
 package com.smw.main.application;
 
 import com.blankj.utilcode.util.Utils;
+import com.limpoxe.support.servicemanager.ServiceManager;
 import com.smw.base.base.BaseApplication;
 import com.smw.base.loadsir.EmptyCallback;
 import com.smw.base.loadsir.ErrorCallback;
@@ -11,9 +12,10 @@ import com.smw.base.utils.SerializeUtil;
 import com.smw.common.IModuleInit;
 import com.smw.common.adapter.ScreenAutoAdapter;
 import com.smw.common.contract.AppConfig;
-import com.smw.common.contract.StocksInfo;
 import com.kingja.loadsir.core.LoadSir;
 import com.orhanobut.logger.Logger;
+import com.smw.common.services.ILoginService;
+import com.smw.main.interceptor.CustomSignInterceptor;
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.cache.converter.GsonDiskConverter;
 import com.zhouyou.http.cache.model.CacheMode;
@@ -22,7 +24,7 @@ import com.zhouyou.http.config.ApiServices;
 /**
  * 应用模块: main
  * <p>
- * 类描述: main组件的业务初始化
+ * 类描述: main组件的业务初始化,其他业务组件所共用功能的初始化
  * <p>
  *
  * @author zeit
@@ -33,6 +35,8 @@ public class MainModuleInit implements IModuleInit
     @Override
     public boolean onInitAhead(BaseApplication application)
     {
+        //初始化manager
+        ServiceManager.init(application);
         ScreenAutoAdapter.setup(application);
         EasyHttp.init(application);
         if (application.issDebug())
@@ -40,23 +44,23 @@ public class MainModuleInit implements IModuleInit
             EasyHttp.getInstance().debug("easyhttp", true);
         }
         EasyHttp.getInstance()
-            .setBaseUrl(ApiServices.BASE_URL)
-            .setReadTimeOut(15 * 1000)
-            .setWriteTimeOut(15 * 1000)
-            .setConnectTimeout(15 * 1000)
-            .setRetryCount(3)
-            .setCacheDiskConverter(new GsonDiskConverter())
-            .setCacheMode(CacheMode.FIRSTREMOTE);
+                .setBaseUrl(ApiServices.BASE_URL)
+                .setReadTimeOut(15 * 1000)
+                .setWriteTimeOut(15 * 1000)
+                .setConnectTimeout(15 * 1000)
+                .setRetryCount(3)
+                .setCacheDiskConverter(new GsonDiskConverter())
+                .setCacheMode(CacheMode.FIRSTREMOTE)
+                .addInterceptor(new CustomSignInterceptor());
         LoadSir.beginBuilder()
-            .addCallback(new ErrorCallback())
-            .addCallback(new LoadingCallback())
-            .addCallback(new EmptyCallback())
-            .addCallback(new TimeoutCallback())
-            .setDefaultCallback(LoadingCallback.class)
-            .commit();
+                .addCallback(new ErrorCallback())
+                .addCallback(new LoadingCallback())
+                .addCallback(new EmptyCallback())
+                .addCallback(new TimeoutCallback())
+                .setDefaultCallback(LoadingCallback.class)
+                .commit();
         Utils.init(application);
         Logger.i("main组件初始化完成 -- onInitAhead");
-
         initInfo();
         return false;
     }

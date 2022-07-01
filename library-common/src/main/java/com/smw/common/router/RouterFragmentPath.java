@@ -12,13 +12,13 @@ package com.smw.common.router;
 public class RouterFragmentPath
 {
     
-    /** 首页选股组件 */
-    public static class Select
+    /** 首页电子合同组件 */
+    public static class Contract
     {
-        private static final String SELECT = "/select";
+        private static final String CONTRACT = "/Contract";
         
         /** 选股组件 */
-        public static final String PAGER_SELECT = SELECT + "/Stock";
+        public static final String PAGER_CONTRACT_INDEX = CONTRACT + "/Index";
         
     }
 

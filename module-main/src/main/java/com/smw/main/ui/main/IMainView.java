@@ -1,7 +1,7 @@
 package com.smw.main.ui.main;
 
 import com.smw.base.activity.IBaseView;
-import com.smw.common.contract.BaseCustomViewModel;
+import com.smw.common.contract.BaseBean;
 
 
 /**
@@ -20,6 +20,6 @@ public interface IMainView extends IBaseView {
      *
      * @param viewModel data
      */
-    void onAppConfigFinish(BaseCustomViewModel viewModel);
+    void onAppConfigFinish(BaseBean viewModel);
 
 }

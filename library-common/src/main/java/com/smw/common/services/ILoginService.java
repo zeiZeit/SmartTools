@@ -1,7 +1,6 @@
 package com.smw.common.services;
 
 import com.alibaba.android.arouter.facade.template.IProvider;
-import com.smw.common.contract.UserInfo;
 
 /**
  * 应用模块:
@@ -43,6 +42,12 @@ public interface ILoginService extends IProvider {
     String getUUID();
 
     /**
+     * 获取用户名
+     * @return userName
+     * */
+    String getUserName();
+
+    /**
      * 刷新用户信息
      * */
     void refreshUserDetailInfo();
@@ -62,11 +67,6 @@ public interface ILoginService extends IProvider {
      * */
     void logout();
 
-    /**
-     * 获取用户信息
-     * @return 用户信息
-     * */
-    UserInfo getUserInfo();
 
     /**
      * 取消登录

@@ -3,7 +3,7 @@ package com.smw.main.ui.main;
 import com.smw.base.model.BaseModel;
 import com.smw.base.model.IModelListener;
 import com.smw.base.viewmodel.MvmBaseViewModel;
-import com.smw.common.contract.BaseCustomViewModel;
+import com.smw.common.contract.BaseBean;
 
 /**
  * 应用模块:
@@ -16,7 +16,7 @@ import com.smw.common.contract.BaseCustomViewModel;
  */
 public class MainActivityViewModel
     extends MvmBaseViewModel<IMainView, AppConfigModel>
-    implements IModelListener<BaseCustomViewModel>
+    implements IModelListener<BaseBean>
 
 {
 
@@ -32,7 +32,7 @@ public class MainActivityViewModel
 
 
     @Override
-    public void onLoadFinish(BaseModel model, BaseCustomViewModel data) {
+    public void onLoadFinish(BaseModel model, BaseBean data) {
         if (getPageView() != null) {
             if (data != null ){
                 if (data instanceof AppConfigResult){

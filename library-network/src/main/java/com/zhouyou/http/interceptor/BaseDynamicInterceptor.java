@@ -56,10 +56,20 @@ public abstract class BaseDynamicInterceptor<R extends BaseDynamicInterceptor> i
     private HttpUrl httpUrl;
 
     private boolean isSign = false;    //是否需要签名
+    private boolean needOldParam = false;    //是否需要签名
     private boolean timeStamp = false;    //是否需要追加时间戳
     private boolean accessToken = false;    //是否需要添加token
 
     public BaseDynamicInterceptor() {
+    }
+
+    public boolean needOldParam() {
+        return needOldParam;
+    }
+
+    public R needOldParam(boolean oldParam) {
+        needOldParam = oldParam;
+        return (R) this;
     }
 
     public boolean isSign() {

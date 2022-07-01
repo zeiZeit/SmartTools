@@ -1,3 +1,5 @@
-include ':app', ':library-base', ':library-common',':library-servicemanager', ':library-network', ':module-main', ':module-home'
+include ':app', ':library-base', ':library-common',':library-servicemanager', ':library-network'
 rootProject.name='SMW-Tools'
 include ':library-update'
+include ':module-user', ':module-main', ':module-contract'
+include ':library-loadsir'

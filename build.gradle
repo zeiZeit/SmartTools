@@ -22,8 +22,7 @@ buildscript {
         maven {
             url 'https://plugins.gradle.org/m2/com/gradle'
         }
-        google()
-
+//        google()
 //        jcenter()
 
     }
@@ -60,9 +59,10 @@ allprojects {
         maven {
             url 'https://plugins.gradle.org/m2/com/gradle'
         }
-        google()
-        jcenter()
+
         maven { url 'https://jitpack.io' }
+//        google()
+//        jcenter()
     }
 }
 
