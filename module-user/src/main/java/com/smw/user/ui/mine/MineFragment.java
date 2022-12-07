@@ -1,19 +1,17 @@
 package com.smw.user.ui.mine;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.gyf.immersionbar.ImmersionBar;
 import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.smw.base.fragment.MvvmLazyImmersionFragment;
-import com.smw.common.contract.BaseBean;
+import com.smw.base.bean.BaseBean;
 import com.smw.common.global.GlobalKey;
 import com.smw.common.router.RouterFragmentPath;
 import com.smw.user.R;
 import com.smw.user.data.UserInfoUtil;
 import com.smw.user.data.model.UserInfo;
 import com.smw.user.databinding.UserFragmentMineBinding;
-import com.smw.user.ui.login.LoginActivity;
 
 
 /**
@@ -41,24 +39,21 @@ public class MineFragment extends MvvmLazyImmersionFragment<UserFragmentMineBind
 
     private void initData(){
         viewModel.initModel();
+        viewDataBinding.setVm(viewModel);
         mUserInfo = UserInfoUtil.getInstance().getUserInfo();
         viewDataBinding.setUser(mUserInfo);
     }
 
     private void initView() {
-        viewDataBinding.csUser.setOnClickListener(t->{
-            if (!UserInfoUtil.getInstance().isLogin()){
-                LoginActivity.open();
-            }
-        });
         LiveEventBus
-                .get(GlobalKey.USER_INFO_UPDATE, String.class)
+                .get(GlobalKey.Event.USER_INFO_UPDATE, String.class)
                 .observeForever(s -> {
                     mUserInfo = UserInfoUtil.getInstance().getUserInfo();
                     viewDataBinding.setUser(mUserInfo);
                     viewDataBinding.executePendingBindings();
                 });
     }
+
 
     @Override
     public int getLayoutId()

@@ -25,7 +25,6 @@ android {
         }
     }
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
     defaultConfig {
         applicationId rootProject.ext.android.applicationId
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -35,7 +34,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk {
             //设置支持的SO库架构
-            abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86'
+            abiFilters 'arm64-v8a', 'x86'
         }
         javaCompileOptions {
             annotationProcessorOptions {
@@ -54,7 +53,7 @@ android {
     sourceSets {
         main{
             //jni库统一放在libs目录下
-//            jniLibs.srcDir = ['libs']
+//            jniLibs.srcDir = ['']
             if (isBuildModule.toBoolean()){
                 //单独运行
                 manifest.srcFile 'src/main/alone/AndroidManifest.xml'
@@ -69,6 +68,15 @@ android {
             }
         }
     }
+
+    packagingOptions {
+        //下面为实际重复导致报错的so文件
+        pickFirst 'lib/armeabi-v7a/libc++_shared.so'
+        pickFirst 'lib/arm64-v8a/libc++_shared.so'
+        pickFirst 'lib/x86/libc++_shared.so'
+        pickFirst 'lib/x86_64/libc++_shared.so'
+    }
+
     //统一资源前缀,规范资源引用
     resourcePrefix "app_"
     //开启dataBinding
@@ -110,3 +118,5 @@ dependencies {
 
 }
 
+//ext.jniProjects = [project(':library-base'), project(':library-common'), project(':module-contract'), project(':module-main'), project(':module-user')]
+//apply from: '../depend_ndk.gradle'

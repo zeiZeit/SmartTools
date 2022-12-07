@@ -79,7 +79,16 @@
 
         </RelativeLayout>
 
-
+        <Button
+            android:id="@+id/tv_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="测试"
+            android:textColor="@color/common_text_main"
+            android:textSize="15sp"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            />
 
     </LinearLayout>
 </layout>

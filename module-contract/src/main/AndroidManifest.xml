@@ -1,3 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.smw.contract">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application>
+        <activity
+            android:name=".ui.pdf.PdfViewActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.smw.contract.ui.template.TemplateActivity"
+            android:exported="true"
+            android:label="我的电子合同模板"
+            android:screenOrientation="portrait"
+            tools:ignore="WrongManifestParent" />
+        <activity
+            android:name="com.smw.contract.ui.contract.list.ContractLsActivity"
+            android:exported="true"
+            android:label="我参与的电子合同列表"
+            android:screenOrientation="portrait"
+            tools:ignore="WrongManifestParent" />
+        <activity
+            android:name="com.smw.contract.ui.contract.detail.ContractDetailActivity"
+            android:exported="true"
+            android:label="电子合同详情页"
+            android:screenOrientation="portrait"
+            tools:ignore="WrongManifestParent" />
+        <activity
+            android:name="com.smw.contract.ui.template.upload.TemplateUploadActivity"
+            android:exported="true"
+            android:label="上传电子合同模板"
+            android:screenOrientation="portrait"
+            tools:ignore="WrongManifestParent" />
+        <activity
+            android:name="com.smw.contract.ui.contract.create.ContractCreateActivity"
+            android:exported="true"
+            android:label="创建电子合同页面"
+            android:screenOrientation="portrait"
+            tools:ignore="WrongManifestParent" />
+    </application>
+
 </manifest>

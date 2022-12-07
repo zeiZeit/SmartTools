@@ -1,7 +1,7 @@
 package com.smw.user.ui.mine;
 
 import com.smw.base.activity.IBaseView;
-import com.smw.common.contract.BaseBean;
+import com.smw.base.bean.BaseBean;
 
 
 /**

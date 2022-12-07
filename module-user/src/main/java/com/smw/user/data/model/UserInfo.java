@@ -3,7 +3,7 @@ package com.smw.user.data.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.smw.common.contract.BaseBean;
+import com.smw.base.bean.BaseBean;
 
 import java.io.Serializable;
 

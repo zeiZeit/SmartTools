@@ -16,7 +16,7 @@ import com.smw.base.storage.MmkvHelper;
 import com.smw.base.utils.SerializeUtil;
 import com.smw.common.adapter.ScreenAutoAdapter;
 import com.smw.common.contract.AppConfig;
-import com.smw.common.contract.BaseBean;
+import com.smw.base.bean.BaseBean;
 import com.smw.common.router.RouterActivityPath;
 import com.smw.common.router.RouterFragmentPath;
 import com.smw.main.R;

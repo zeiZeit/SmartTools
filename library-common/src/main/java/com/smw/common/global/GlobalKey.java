@@ -11,7 +11,17 @@ package com.smw.common.global;
  */
 public class GlobalKey
 {
-    /** 用户信息 */
-    public static final String USER_INFO_UPDATE = "user_info_update";
-    
+    public interface Event{
+        /** 用户信息 */
+        String USER_INFO_UPDATE = "user_info_update";
+
+        /** 上传了新的合同模板 */
+        String TEMPLATE_UPLOAD = "template_upload_success";
+    }
+
+    public interface Key {
+
+        String USER_SEARCH_RESULT = "USER_SEARCH_RESULT";
+        String TEMPLATE_SELECTED_RESULT = "USER_SEARCH_RESULT";
+    }
 }

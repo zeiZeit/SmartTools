@@ -58,15 +58,12 @@ public class ServiceManager {
 
         //首先在当前进程内查询
         Object service = ServicePool.getService(name);
-
         if (service == null) {
             //向远端器查询
             Bundle bundle = ContentProviderCompat.call(ServiceProvider.buildUri(),
                     ServiceProvider.QUERY_INTERFACE, name, null);
-
             if (bundle != null) {
                 String interfaceClassName = bundle.getString(ServiceProvider.QUERY_INTERFACE_RESULT);
-
                 if (interfaceClassName != null) {
                     service = RemoteProxy.getProxyService(name, interfaceClassName, interfaceClassloader);
                     //缓存Proxy到本地
@@ -96,9 +93,9 @@ public class ServiceManager {
             public Object getServiceInstance() {
                 try {
                     Constructor constructor =  classloader.loadClass(className).getDeclaredConstructors()[0];
+                    if (!constructor.isAccessible())
                     constructor.setAccessible(true);
                     Object obj = constructor.newInstance();
-                    constructor.setAccessible(false);
                     return obj;
                 } catch (ClassNotFoundException classNotFoundException) {
                     classNotFoundException.printStackTrace();

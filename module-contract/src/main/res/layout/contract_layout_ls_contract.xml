@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.cy.necessaryview.shapeview.RecShapeLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:colorFill="@color/common_white"
+    app:radiusCorner="8dp"
+    android:padding="12dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+        <com.smw.common.views.MediumTextView
+            android:id="@+id/tv_contract_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/common_text_main"
+            android:textSize="18sp"
+            android:text="---合同"
+            />
+
+        <com.cy.necessaryview.shapeview.RecShapeTextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/common_accent_blue"
+            android:textSize="13sp"
+            android:text="签署中"
+            app:strokeWidth="0.5dp"
+            app:strokeColor="@color/common_accent_blue"
+            app:radiusCorner="4dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp">
+
+        <ImageView
+            android:id="@+id/iv_head"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="10dp"/>
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/home_green"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="12dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="bottom">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="创建者："
+                    android:textColor="@color/common_666"
+                    android:textSize="13sp"
+                    />
+                <TextView
+                    android:id="@+id/tv_creator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="某某某"
+                    android:textColor="@color/common_text_main"
+                    android:textSize="13sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="bottom"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="创建时间："
+                    android:textColor="@color/common_666"
+                    android:textSize="13sp"
+                    />
+                <TextView
+                    android:id="@+id/tv_create_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0000-00-00"
+                    android:textColor="@color/common_text_main"
+                    android:textSize="13sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="bottom"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="最后修改时间："
+                    android:textColor="@color/common_666"
+                    android:textSize="13sp"
+                    />
+                <TextView
+                    android:id="@+id/tv_update_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0000-00-00"
+                    android:textColor="@color/common_text_main"
+                    android:textSize="13sp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</com.cy.necessaryview.shapeview.RecShapeLinearLayout>

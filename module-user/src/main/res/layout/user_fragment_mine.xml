@@ -5,6 +5,9 @@
     <data>
         <import type="com.smw.common.utils.StringUtils"/>
         <variable
+            name="vm"
+            type="com.smw.user.ui.mine.MineVM" />
+        <variable
             name="user"
             type="com.smw.user.data.model.UserInfo" />
 
@@ -42,9 +45,12 @@
                 />
 
             <ImageView
+                android:id="@+id/iv_setting"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/user_ic_setting"
+                android:clickable="true"
+                android:onClick="@{vm::onClick}"
                 />
 
         </LinearLayout>
@@ -66,19 +72,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@color/common_white"
                     android:orientation="vertical"
-                    app:colorCenter="#03A9F4"
-                    app:colorEnd="#2196F3"
-                    app:colorFill="@color/common_white"
                     app:colorStart="#00BCD4"
+                    app:colorCenter="#2196F3"
+                    app:colorEnd="#3F51B5"
                     app:radiusCorner="8dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cs_user"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="12dp">
+                        android:padding="12dp"
+                        android:clickable="true"
+                        android:onClick="@{vm::onClick}">
 
                         <ImageView
                             android:id="@+id/iv_head"
@@ -116,11 +122,150 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
+                </com.cy.necessaryview.shapeview.RecShapeLinearLayout>
 
 
+                <com.cy.necessaryview.shapeview.RecShapeLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    app:colorStart="#8BC34A"
+                    app:colorCenter="#4CAF50"
+                    app:colorEnd="#009688"
+                    app:radiusCorner="8dp"
+                    android:divider="@color/common_white"
+                    android:showDividers="middle"
+                    android:dividerPadding="12dp"
+                    >
+
+                    <com.smw.common.views.MediumTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="电子合同"
+                        android:textSize="16sp"
+                        android:textColor="@color/common_white"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="5dp"
+                        />
+
+                    <com.smw.common.views.DrawableTextView
+                        android:id="@+id/tv_my_template"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:drawableHeight="20dp"
+                        app:drawableWidth="20dp"
+                        android:text="我的合同模板文件"
+                        android:textColor="@color/common_white"
+                        android:textSize="14sp"
+                        android:padding="12dp"
+                        app:drawableLeft="@drawable/app_icon"
+                        app:drawableRight="@drawable/common_arrow_right"
+                        android:drawablePadding="4dp"
+                        android:onClick="@{vm::onClick}"
+                        />
+                    <com.smw.common.views.DrawableTextView
+                        android:id="@+id/tv_create_contract"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:drawableHeight="20dp"
+                        app:drawableWidth="20dp"
+                        android:text="创建电子合同"
+                        android:textColor="@color/common_white"
+                        android:textSize="14sp"
+                        android:padding="12dp"
+                        app:drawableLeft="@drawable/app_icon"
+                        app:drawableRight="@drawable/common_arrow_right"
+                        android:drawablePadding="4dp"
+                        android:onClick="@{vm::onClick}"
+                        />
+                    <com.smw.common.views.DrawableTextView
+                        android:id="@+id/tv_my_contract"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:drawableHeight="20dp"
+                        app:drawableWidth="20dp"
+                        android:text="我的电子合同"
+                        android:textColor="@color/common_white"
+                        android:textSize="14sp"
+                        android:padding="12dp"
+                        app:drawableLeft="@drawable/app_icon"
+                        app:drawableRight="@drawable/common_arrow_right"
+                        android:drawablePadding="4dp"
+                        android:onClick="@{vm::onClick}"
+                        />
 
                 </com.cy.necessaryview.shapeview.RecShapeLinearLayout>
 
+                <com.cy.necessaryview.shapeview.RecShapeLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    app:colorStart="#FF5722"
+                    app:colorCenter="#FF9800"
+                    app:colorEnd="#F44336"
+                    app:radiusCorner="8dp"
+                    android:divider="@color/common_white"
+                    android:showDividers="middle"
+                    android:dividerPadding="12dp"
+                    >
+
+                    <com.smw.common.views.MediumTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="双录"
+                        android:textSize="16sp"
+                        android:textColor="@color/common_white"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="5dp"
+                        />
+
+                    <com.smw.common.views.DrawableTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:drawableHeight="20dp"
+                        app:drawableWidth="20dp"
+                        android:text="我的双录模板"
+                        android:textColor="@color/common_white"
+                        android:textSize="14sp"
+                        android:padding="12dp"
+                        app:drawableLeft="@drawable/app_icon"
+                        app:drawableRight="@drawable/common_arrow_right"
+                        android:drawablePadding="4dp"
+                        android:onClick="@{vm::onClick}"
+                        />
+                    <com.smw.common.views.DrawableTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:drawableHeight="20dp"
+                        app:drawableWidth="20dp"
+                        android:text="创建新双录"
+                        android:textColor="@color/common_white"
+                        android:textSize="14sp"
+                        android:padding="12dp"
+                        app:drawableLeft="@drawable/app_icon"
+                        app:drawableRight="@drawable/common_arrow_right"
+                        android:drawablePadding="4dp"
+                        android:onClick="@{vm::onClick}"
+                        />
+                    <com.smw.common.views.DrawableTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:drawableHeight="20dp"
+                        app:drawableWidth="20dp"
+                        android:text="我的双录"
+                        android:textColor="@color/common_white"
+                        android:textSize="14sp"
+                        android:padding="12dp"
+                        app:drawableLeft="@drawable/app_icon"
+                        app:drawableRight="@drawable/common_arrow_right"
+                        android:drawablePadding="4dp"
+                        android:onClick="@{vm::onClick}"
+                        />
+                </com.cy.necessaryview.shapeview.RecShapeLinearLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </RelativeLayout>

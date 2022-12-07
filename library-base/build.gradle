@@ -2,17 +2,14 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
         consumerProguardFiles 'consumer-rules.pro'
     }
     sourceSets {
         main {
-//            jniLibs.srcDirs = ['libs']
+            jniLibs.srcDirs = ['libs']
             if (isBuildModule.toBoolean()) {
             } else {
                 resources {
@@ -47,6 +44,7 @@ android {
 
 dependencies {
     api project(':library-loadsir')
+//    api fileTree(include: ['*.jar'], dir: 'libs')
     api rootProject.ext.androidx["androidx-appcompat"]
     api rootProject.ext.androidx["androidx.lifecycle"]
     api rootProject.ext.androidx["androidx.recyclerview"]
@@ -64,6 +62,11 @@ dependencies {
     api rootProject.ext.dependencies["glide"]
     api rootProject.ext.dependencies["bubbleLayout"]
     api rootProject.ext.dependencies["live-event-bus"]
+    api rootProject.ext.dependencies["PDFviews"]
+//    api 'io.github.molihuan:pathselector:1.0.10'
+//    api 'com.sky.filePicker:filePicker:1.0.2'
+
+    api 'cn.imlibo:FilePicker:v0.0.5_alpha'
     testImplementation 'org.testng:testng:6.9.6'
     androidTestImplementation 'junit:junit:4.12'
 }

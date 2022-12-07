@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="ResourceName"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/common_bg_window_grep"
+        >
+
+        <LinearLayout
+            android:id="@+id/ll_top"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:background="@color/common_white"
+            >
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/common_arrow_left"
+                />
+
+            <com.smw.common.views.MediumTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:text="合同模板文件上传"
+                android:textColor="@color/common_text_main"
+                android:textSize="17sp"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="14sp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rl_root"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="10dp"
+            >
+
+            <com.cy.necessaryview.shapeview.RecShapeLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:radiusCorner="8dp"
+                app:colorFill="@color/common_white"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="文件名"
+                        android:textSize="15sp"
+                        android:textColor="@color/common_text_main"
+                        android:layout_marginRight="20dp"
+                        />
+                    <EditText
+                        android:id="@+id/et_file_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/common_white"
+                        android:hint="请输入文件名"
+                        android:textSize="15sp"
+                        android:gravity="right|center_vertical"
+                        android:textColor="@color/common_text_main"
+                        />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/common_d8"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="阅读时间（秒）"
+                        android:textSize="15sp"
+                        android:textColor="@color/common_text_main"
+                        android:layout_marginRight="20dp"
+                        />
+                    <EditText
+                        android:id="@+id/et_file_read_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/common_white"
+                        android:hint="0"
+                        android:textSize="15sp"
+                        android:gravity="right|center_vertical"
+                        android:textColor="@color/common_text_main"
+                        />
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/common_d8"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="选择文件"
+                        android:textSize="15sp"
+                        android:textColor="@color/common_text_main"
+                        android:layout_marginRight="20dp"
+                        />
+                    <com.smw.common.views.DrawableTextView
+                        android:id="@+id/tv_file_select"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/common_white"
+                        android:hint="点击选择文件"
+                        android:textColorHint="@color/common_accent_blue"
+                        android:textSize="14sp"
+                        android:gravity="right|center_vertical"
+                        android:textColor="@color/common_accent_blue"
+                        />
+
+                </LinearLayout>
+
+            </com.cy.necessaryview.shapeview.RecShapeLinearLayout>
+
+            <com.cy.necessaryview.shapeview.RecShapeButton
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:radiusCorner="8dp"
+                app:colorFill="@color/common_accent_blue"
+                android:textColor="@color/common_white"
+                android:text="提交"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>

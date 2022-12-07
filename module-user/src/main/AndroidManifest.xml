@@ -5,6 +5,12 @@
     <application>
         <activity
             android:name=".ui.login.LoginActivity"
+            android:label="登录页"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.search.UserSearchActivity"
+            android:label="用户搜索页"
             android:exported="true"
             android:screenOrientation="portrait"/>
     </application>

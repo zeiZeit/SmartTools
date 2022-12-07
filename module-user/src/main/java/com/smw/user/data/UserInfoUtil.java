@@ -4,7 +4,9 @@ import android.content.Context;
 
 import androidx.lifecycle.Observer;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jeremyliao.liveeventbus.LiveEventBus;
+import com.limpoxe.support.servicemanager.ServiceManager;
 import com.smw.base.utils.GsonUtils;
 import com.smw.common.global.GlobalKey;
 import com.smw.common.services.ILoginService;
@@ -12,12 +14,14 @@ import com.smw.common.utils.StringUtils;
 import com.smw.user.config.UserConfig;
 import com.smw.user.data.model.UserInfo;
 import com.tencent.mmkv.MMKV;
+import com.smw.common.services.config.ServicesConfig;
 
+//@Route(path = ServicesConfig.User.LONGING_SERVICE, name =ILoginService.LOGIN_SERVICE_NAME)
 public class UserInfoUtil implements ILoginService {
 
     private UserInfo mUserInfo;
 
-    private UserInfoUtil(){
+    public UserInfoUtil(){
         String userStr = MMKV.mmkvWithID(UserConfig.Keys.KEY_USER_INFO).decodeString(UserConfig.Keys.KEY_USER_INFO_STR);
         mUserInfo = GsonUtils.fromLocalJson(userStr,UserInfo.class);
         if (mUserInfo == null){
@@ -43,8 +47,17 @@ public class UserInfoUtil implements ILoginService {
         String str = GsonUtils.toJson(userInfo);
         MMKV.mmkvWithID(UserConfig.Keys.KEY_USER_INFO).encode(UserConfig.Keys.KEY_USER_INFO_STR,str);
         LiveEventBus
-                .get(GlobalKey.USER_INFO_UPDATE, String.class)
-                .post("info_change");;
+                .get(GlobalKey.Event.USER_INFO_UPDATE, String.class)
+                .post("info_change");
+
+
+
+        if (mUserInfo==null||StringUtils.isEmpty(mUserInfo.getToken())){
+            //未登录状态 注销服务
+            ServiceManager.unPublishService(ILoginService.LOGIN_SERVICE_NAME);
+        }else {
+            ServiceManager.publishService(ILoginService.LOGIN_SERVICE_NAME,UserInfoUtil.class.getName());
+        }
     }
 
     @Override
@@ -70,6 +83,10 @@ public class UserInfoUtil implements ILoginService {
     @Override
     public String getUserName() {
         return mUserInfo.getUser_name();
+    }
+
+    public String getHeadImage(){
+        return mUserInfo.getHead_image();
     }
 
     @Override

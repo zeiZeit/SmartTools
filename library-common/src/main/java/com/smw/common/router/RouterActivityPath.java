@@ -32,5 +32,32 @@ public class RouterActivityPath
 
         /** 关注页面 */
         public static final String PAGER_ATTENTION = USER + "/attention";
+
+
+        /** 用户搜索界面 */
+        public static final String PAGER_USER_SEARCH = USER + "/UserSearch";
     }
+
+    public static class Contract
+    {
+        private static final String CONTRACT = "/Contract";
+
+        /** 我的合同模板界面 */
+        public static final String PAGER_TEMPLATE_MINE = CONTRACT + "/TemplateMine";
+
+        /** 合同模板上传界面 */
+        public static final String PAGER_TEMPLATE_CREATE = CONTRACT + "/TemplateCreate";
+
+        /** 合同创建界面 */
+        public static final String PAGER_CONTRACT_CREATE = CONTRACT + "/ContractCreate";
+
+        /** Pdf浏览页面 */
+        public static final String PAGER_PDF_VIEW = CONTRACT + "/PdfView";
+
+        /** 我的合同列表 */
+        public static final String PAGER_CONTRACT_LIST = CONTRACT + "/ContractLs";
+        /** 合同详情页 */
+        public static final String PAGER_CONTRACT_DETAIL = CONTRACT + "/ContractDetail";
+    }
+
 }

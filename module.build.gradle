@@ -22,8 +22,8 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
-
     }
+
     buildTypes {
         debug {
             minifyEnabled false

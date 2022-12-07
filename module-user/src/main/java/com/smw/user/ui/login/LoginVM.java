@@ -3,14 +3,10 @@ package com.smw.user.ui.login;
 import com.smw.base.model.BaseModel;
 import com.smw.base.model.IModelListener;
 import com.smw.base.viewmodel.MvmBaseViewModel;
-import com.smw.common.contract.BaseBean;
+import com.smw.base.bean.BaseBean;
 import com.smw.user.data.model.UserInfo;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 应用模块:

@@ -3,7 +3,7 @@ package com.smw.main.ui.main;
 import com.smw.base.model.BaseModel;
 import com.smw.base.model.IModelListener;
 import com.smw.base.viewmodel.MvmBaseViewModel;
-import com.smw.common.contract.BaseBean;
+import com.smw.base.bean.BaseBean;
 
 /**
  * 应用模块:

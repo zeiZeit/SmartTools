@@ -9,8 +9,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.gyf.immersionbar.ImmersionBar;
 import com.smw.base.activity.MvvmBaseActivity;
 import com.smw.base.utils.ToastUtil;
-import com.smw.base.viewmodel.IMvvmBaseViewModel;
-import com.smw.common.contract.BaseBean;
+import com.smw.base.bean.BaseBean;
 import com.smw.common.router.RouterFragmentPath;
 import com.smw.common.utils.StringUtils;
 import com.smw.common.utils.Validator;
@@ -81,6 +80,10 @@ public class LoginActivity extends MvvmBaseActivity <UserActivityLoginBinding, L
         String phone = viewDataBinding.etRegisterPhone.getText().toString().trim();
         String pass1 = viewDataBinding.etRegisterPass1.getText().toString();
         String pass2 = viewDataBinding.etRegisterPass2.getText().toString();
+        if (StringUtils.isEmpty(phone)){
+            ToastUtil.show(this,"请输入手机号");
+            return;
+        }
         if (!Validator.isMobile(phone)){
             ToastUtil.show(this,"手机号格式不对");
             return;
@@ -104,6 +107,10 @@ public class LoginActivity extends MvvmBaseActivity <UserActivityLoginBinding, L
     private void checkToLogin() {
         String phone = viewDataBinding.etLoginPhone.getText().toString().trim();
         String pass = viewDataBinding.etLoginPass.getText().toString();
+        if (StringUtils.isEmpty(phone)){
+            ToastUtil.show(this,"请输入手机号");
+            return;
+        }
         if (!Validator.isMobile(phone)){
             ToastUtil.show(this,"手机号格式不对");
             return;
@@ -123,6 +130,7 @@ public class LoginActivity extends MvvmBaseActivity <UserActivityLoginBinding, L
         ToastUtil.show(this,"登录成功");
         UserInfoUtil.getInstance().updateUserInfo((UserInfo) viewModel);
         finish();
+
     }
 
     @Override

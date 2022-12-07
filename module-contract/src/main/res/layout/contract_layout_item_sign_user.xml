@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        >
+        <com.cy.necessaryview.shapeview.RecShapeRelativeLayout
+            android:id="@+id/rl_user"
+            android:layout_width="70dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            app:colorFill="@color/common_bg_window_grep"
+            app:radiusCorner="8dp"
+            app:strokeColor="@color/common_accent_blue"
+            app:strokeWidth="0.5dp">
+
+            <ImageView
+                android:id="@+id/head"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/head"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginBottom="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="用户"
+                android:textColor="@color/common_text_main"
+                android:textSize="12sp" />
+
+        </com.cy.necessaryview.shapeview.RecShapeRelativeLayout>
+        <com.cy.necessaryview.shapeview.RecShapeTextView
+            android:id="@+id/tv_status"
+            android:layout_width="60dp"
+            android:layout_height="16dp"
+            android:textColor="@color/common_white"
+            app:colorFill="@color/common_accent_blue"
+            android:textSize="10sp"
+            android:text="签署中"
+            app:strokeWidth="0.5dp"
+            app:radiusCorner="4dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            />
+    </RelativeLayout>
+
+</layout>

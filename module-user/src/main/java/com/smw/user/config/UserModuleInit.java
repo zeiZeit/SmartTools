@@ -30,7 +30,7 @@ public class UserModuleInit implements IModuleInit
     public boolean onInitAhead(BaseApplication application)
     {
         initInfo();
-        ServiceManager.publishService(ILoginService.LOGIN_SERVICE_NAME,UserInfoUtil.class.getName(),UserInfoUtil.getInstance().getClass().getClassLoader());
+        ServiceManager.publishService(ILoginService.LOGIN_SERVICE_NAME,UserInfoUtil.class.getName());
         return false;
     }
 

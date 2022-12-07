@@ -96,19 +96,11 @@ public class CommonBindingAdapters
     @BindingAdapter("imageHeadUrl")
     public static void loadHeadImage(ImageView imageView, String url)
     {
-        if (!TextUtils.isEmpty(url))
-        {
-            Glide.with(imageView.getContext())
-                    .load(url)
-                    .transform(new GlideCircleWithBorder(imageView.getContext(), 2, Color.parseColor("#E6E6E6")))
-                    .into(imageView);
-        }else {
-
-            Glide.with(imageView.getContext())
-                    .load(imageView.getContext().getDrawable(R.drawable.common_icon_avatar_logout))
-                    .transform(new GlideCircleWithBorder(imageView.getContext(), 2, Color.parseColor("#E6E6E6")))
-                    .into(imageView);
-        }
+        Glide.with(imageView.getContext())
+                .load(url)
+                .placeholder(R.drawable.common_icon_avatar_logout)
+                .transform(new GlideCircleWithBorder(imageView.getContext(), 2, Color.parseColor("#E6E6E6")))
+                .into(imageView);
 
     }
     

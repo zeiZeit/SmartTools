@@ -3,3 +3,9 @@ rootProject.name='SMW-Tools'
 include ':library-update'
 include ':module-user', ':module-main', ':module-contract'
 include ':library-loadsir'
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}

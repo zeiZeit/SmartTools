@@ -1,7 +1,9 @@
 package com.smw.main.interceptor;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.limpoxe.support.servicemanager.ServiceManager;
 import com.smw.common.services.ILoginService;
+import com.smw.common.services.config.ServicesConfig;
 import com.smw.common.utils.Base64;
 import com.zhouyou.http.interceptor.BaseDynamicInterceptor;
 
@@ -40,6 +42,8 @@ public class CustomSignInterceptor extends BaseDynamicInterceptor<CustomSignInte
         }
         if (isAccessToken()) {//是否添加token
             ILoginService loginService = (ILoginService) ServiceManager.getService(ILoginService.LOGIN_SERVICE_NAME);
+//            ILoginService loginService =   (ILoginService) ARouter.getInstance().build(ServicesConfig.User.LONGING_SERVICE).navigation();
+
             newMap.put("token", loginService.getToken());
             newMap.put("uuid", loginService.getUUID());
         }

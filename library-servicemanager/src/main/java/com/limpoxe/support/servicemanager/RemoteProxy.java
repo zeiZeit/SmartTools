@@ -25,12 +25,9 @@ public class RemoteProxy {
             Class clientClass = classloader.loadClass(iFaceClassName);
             return Proxy.newProxyInstance(classloader, new Class[]{clientClass},
                     new InvocationHandler() {
-
                         Boolean isInProviderProcess;
-
                         String desciptpr;
                         IBinder iBinder;
-
                         @TargetApi(Build.VERSION_CODES.HONEYCOMB)
                         @Override
                         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {

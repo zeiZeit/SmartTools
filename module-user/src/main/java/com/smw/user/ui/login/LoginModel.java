@@ -1,16 +1,15 @@
 package com.smw.user.ui.login;
 
 import com.smw.base.model.BaseModel;
-import com.smw.common.contract.BaseBean;
-import com.smw.common.utils.Base64;
+import com.smw.base.bean.BaseBean;
 import com.smw.common.utils.StringUtils;
 import com.smw.user.data.model.UserInfo;
 import com.zhouyou.http.EasyHttp;
+import com.zhouyou.http.cache.model.CacheMode;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.config.ApiServices;
 import com.zhouyou.http.exception.ApiException;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +40,7 @@ public class LoginModel<T> extends BaseModel<T>
     public void register(Map<String,String> data) {
         Disposable disposable = EasyHttp.post(ApiServices.User.REGISTER)
                 .cacheKey(ApiServices.User.REGISTER)
+                .cacheMode(CacheMode.NO_CACHE)
                 .params(data)
                 .sign(true)
                 .execute(new SimpleCallBack<BaseBean>()
@@ -65,6 +65,7 @@ public class LoginModel<T> extends BaseModel<T>
     public void login(Map<String,String> data) {
         Disposable disposable = EasyHttp.post(ApiServices.User.LOGIN)
                 .cacheKey(ApiServices.User.LOGIN) //不能用相同的key，不然可能造成解析错误。
+                .cacheMode(CacheMode.NO_CACHE)
                 .params(data)
                 .sign(true)
                 .execute(new SimpleCallBack<UserInfo>()

@@ -20,7 +20,8 @@ public class ServicePool {
 
     public static synchronized void registerClass(final String name, final ClassProvider provider) {
         Log.d(TAG, "registerClass service " + name);
-        if (!SYSTEM_SERVICE_MAP.containsKey(name)) {
+        // 这里不做去重，因为重新发布服务可能确实要覆盖之前的服务。
+//        if (!SYSTEM_SERVICE_MAP.containsKey(name)) {
             ServiceFetcher fetcher = new ServiceFetcher() {
                 @Override
                 public Object createService(int serviceId) {
@@ -34,7 +35,7 @@ public class ServicePool {
             };
             fetcher.mServiceId ++;
             SYSTEM_SERVICE_MAP.put(name, fetcher);
-        }
+//        }
     }
 
     public static synchronized void registerInstance(final String name, final Object service) {
