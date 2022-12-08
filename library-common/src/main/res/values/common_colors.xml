@@ -6,6 +6,7 @@
     <color name="common_accent_red">#F52D2D</color>
     <color name="common_accent_yellow">#FFEB3B</color>
     <color name="common_accent_blue">#007AFF</color>
+    <color name="common_accent_green">#4CAF50</color>
     <color name="common_white">#ffffffff</color>
     <color name="common_color_text_gray">#656565</color>
     <color name="common_colorWhite">#FFFFFF</color>

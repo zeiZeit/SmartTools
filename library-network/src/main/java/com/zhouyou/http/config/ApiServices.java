@@ -17,6 +17,8 @@ public class ApiServices {
 
         String CONTRACT_LS  = BASE_URL+"/contract/manage/getContract";
         String CONTRACT_DETAIL  = BASE_URL+"/contract/manage/detail";
+        String CONTRACT_SIGN  = BASE_URL+"/contract/manage/sign";
+        String CONTRACT_CONFIRM  = BASE_URL+"/contract/manage/confirm";
     }
 
 }

@@ -63,6 +63,9 @@ public class TemplateUploadActivity extends MvvmBaseActivity <ContractActivityTe
                 .statusBarDarkFont(true)
                 .init();
         setLoadSir(viewDataBinding.rlRoot);
+        viewDataBinding.ivBack.setOnClickListener(t->{
+            onBackPressed();
+        });
         viewModel.initModel();
         initView();
     }

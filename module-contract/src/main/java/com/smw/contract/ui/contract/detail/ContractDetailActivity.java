@@ -3,6 +3,7 @@ package com.smw.contract.ui.contract.detail;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,27 +13,31 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.blankj.utilcode.util.ScreenUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.cy.necessaryview.shapeview.RecShapeTextView;
 import com.gyf.immersionbar.ImmersionBar;
+import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.limpoxe.support.servicemanager.ServiceManager;
 import com.smw.base.activity.IDataLoadView;
 import com.smw.base.activity.MvvmBaseActivity;
 import com.smw.base.bean.BaseBean;
 import com.smw.base.utils.ToastUtil;
 import com.smw.common.adapter.CommonBindingAdapters;
+import com.smw.common.global.GlobalKey;
 import com.smw.common.router.RouterActivityPath;
 import com.smw.common.services.ILoginService;
 import com.smw.common.utils.DensityUtils;
 import com.smw.common.utils.ResUtils;
-import com.smw.common.views.DrawableTextView;
 import com.smw.contract.R;
 import com.smw.contract.data.model.ContractDetailRes;
 import com.smw.contract.data.model.SignFileBean;
 import com.smw.contract.data.model.SignUserBean;
 import com.smw.contract.databinding.ContractActivityDetailBinding;
+import com.smw.contract.ui.contract.confirm.ConfirmActivity;
+import com.smw.contract.ui.contract.sign.ContractSignActivity;
+import com.smw.contract.ui.pdf.PdfViewActivity;
 
 import java.util.ArrayList;
 
@@ -75,11 +80,19 @@ public class ContractDetailActivity extends MvvmBaseActivity <ContractActivityDe
                 .statusBarDarkFont(true)
                 .init();
         ARouter.getInstance().inject(this);
+        viewDataBinding.ivBack.setOnClickListener(t->{
+            onBackPressed();
+        });
         initRecycleView();
         setLoadSir(viewDataBinding.rlRoot);
         viewModel.initModel();
         showLoading();
         viewModel.load(mContractId);
+        LiveEventBus
+                .get(GlobalKey.Event.CONTRACT_SIGN_FINISH, String.class)
+                .observeForever(s -> {
+                    viewModel.load(mContractId);
+                });
     }
 
 
@@ -95,12 +108,28 @@ public class ContractDetailActivity extends MvvmBaseActivity <ContractActivityDe
         }
 
         mFileAdapter = new FileLsAdapter();
-        mFileAdapter.setOnItemClickListener((adapter, view, position) -> {
-
+        mFileAdapter.addChildClickViewIds(R.id.tv_sign_status);
+        mFileAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+            if (view.getId()==R.id.tv_sign_status){
+                SignFileBean signFileBean = (SignFileBean) adapter.getData().get(position);
+                if (signFileBean.getMy_status()==0){
+                    ContractSignActivity.open(mContractId,signFileBean.getContract_file_url(),signFileBean.getFile_id());
+                }else if (signFileBean.getMy_status()==1){
+                    ConfirmActivity.open(mContractId,signFileBean.getContract_file_url(),signFileBean.getFile_id());
+                }
+            }
+        });
+        mFileAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                SignFileBean signFileBean = (SignFileBean) adapter.getData().get(position);
+                PdfViewActivity.open(signFileBean.getContract_file_url());
+            }
         });
         viewDataBinding.rvTemplate.setAdapter(mFileAdapter);
         viewDataBinding.rvTemplate.setLayoutManager(new LinearLayoutManager(this));
         viewDataBinding.rvTemplate.setNestedScrollingEnabled(false);
+
 
         mUserAdapter = new UserLsAdapter();
         mUserAdapter.setOnItemClickListener((adapter, view, position) -> {
@@ -109,6 +138,13 @@ public class ContractDetailActivity extends MvvmBaseActivity <ContractActivityDe
         viewDataBinding.rvUser.setAdapter(mUserAdapter);
         viewDataBinding.rvUser.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         viewDataBinding.rvUser.setNestedScrollingEnabled(false);
+
+
+        viewDataBinding.smRefresh.setEnableLoadMore(false);
+        viewDataBinding.smRefresh.setEnableRefresh(true);
+        viewDataBinding.smRefresh.setOnRefreshListener(refreshLayout -> {
+            viewModel.load(mContractId);
+        });
     }
 
     @Override
@@ -120,6 +156,7 @@ public class ContractDetailActivity extends MvvmBaseActivity <ContractActivityDe
     public void onDataLoadFinish(BaseBean viewModel) {
         ContractDetailRes detailRes = (ContractDetailRes) viewModel;
         showContent();
+        viewDataBinding.smRefresh.finishRefresh();
         refreshView(detailRes);
     }
 
@@ -129,6 +166,11 @@ public class ContractDetailActivity extends MvvmBaseActivity <ContractActivityDe
         viewDataBinding.tvCreator.setText(detailRes.getCreate_user());
         viewDataBinding.tvCreateTime.setText(detailRes.getCreate_time());
         viewDataBinding.tvUpdateTime.setText(detailRes.getUpdate_time());
+        if (detailRes.getStatus()==2){
+            viewDataBinding.tvStatus.setText("已完成");
+        }else {
+            viewDataBinding.tvStatus.setText("签署中");
+        }
         mFileAdapter.setNewData(detailRes.getFiles());
         mUserAdapter.setNewData(detailRes.getUsers());
     }
@@ -152,7 +194,6 @@ public class ContractDetailActivity extends MvvmBaseActivity <ContractActivityDe
         protected void convert(@NonNull BaseViewHolder baseViewHolder, SignFileBean item) {
             baseViewHolder.setText(R.id.tv_file_name,item.getFile_name());
             baseViewHolder.setText(R.id.tv_update_time,item.getUpdate_time()+"更新");
-
             TextView tv_sign_status = baseViewHolder.getView(R.id.tv_sign_status);
             if (item.getStatus()==0){
                 if (item.getNow_sign_uuid().equals(myUUID)){
@@ -161,8 +202,9 @@ public class ContractDetailActivity extends MvvmBaseActivity <ContractActivityDe
                     baseViewHolder.setGone(R.id.iv_arrow,false);
                     baseViewHolder.setText(R.id.tv_now_user,"该您签署了");
                     baseViewHolder.setTextColor(R.id.tv_now_user,ResUtils.getColor(tv_sign_status,R.color.common_accent_red));
-
+                    tv_sign_status.setEnabled(true);
                 }else {
+                    tv_sign_status.setEnabled(false);
                     tv_sign_status.setText("等待他人签署");
                     tv_sign_status.setTextColor(ResUtils.getColor(tv_sign_status,R.color.common_666));
                     baseViewHolder.setGone(R.id.iv_arrow,true);
@@ -170,13 +212,15 @@ public class ContractDetailActivity extends MvvmBaseActivity <ContractActivityDe
                     baseViewHolder.setTextColor(R.id.tv_now_user,ResUtils.getColor(tv_sign_status,R.color.common_accent_blue));
                 }
             }else if (item.getStatus()==1){
-                if (item.getNow_sign_uuid().equals(myUUID)){
+                if (item.getMy_status()==1){
                     tv_sign_status.setText("去确认");
+                    tv_sign_status.setEnabled(true);
                     tv_sign_status.setTextColor(ResUtils.getColor(tv_sign_status,R.color.common_accent_blue));
                     baseViewHolder.setGone(R.id.iv_arrow,false);
                     baseViewHolder.setText(R.id.tv_now_user,"该您确认了");
                     baseViewHolder.setTextColor(R.id.tv_now_user,ResUtils.getColor(tv_sign_status,R.color.common_accent_red));
                 }else {
+                    tv_sign_status.setEnabled(false);
                     tv_sign_status.setText("等待他人确认");
                     tv_sign_status.setTextColor(ResUtils.getColor(tv_sign_status,R.color.common_666));
                     baseViewHolder.setGone(R.id.iv_arrow,true);
@@ -190,6 +234,7 @@ public class ContractDetailActivity extends MvvmBaseActivity <ContractActivityDe
                 baseViewHolder.setGone(R.id.iv_arrow,true);
                 baseViewHolder.setText(R.id.tv_now_user,"");
             }
+
         }
 
         public boolean isChooseType() {
@@ -219,12 +264,12 @@ public class ContractDetailActivity extends MvvmBaseActivity <ContractActivityDe
             LayerDrawable layerDrawable = new LayerDrawable(layers);
             if (item.getStatus()==0){
                 gradientDrawable.setColor(ResUtils.getColor(ContractDetailActivity.this,R.color.common_accent_red));//设置填充色
-                tv_status.setText("未完成");
+                tv_status.setText("待签署");
             }else if(item.getStatus()==1){
                 tv_status.setText("待确认");
                 gradientDrawable.setColor(ResUtils.getColor(ContractDetailActivity.this,R.color.common_accent_yellow));//设置填充色
             }else if (item.getStatus()==2){
-                gradientDrawable.setColor(ResUtils.getColor(ContractDetailActivity.this,R.color.common_accent_blue));//设置填充色
+                gradientDrawable.setColor(ResUtils.getColor(ContractDetailActivity.this,R.color.common_accent_green));//设置填充色
                 tv_status.setText("已完成");
             }
             tv_status.setBackground(layerDrawable);

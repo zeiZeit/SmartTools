@@ -13,6 +13,7 @@
         tools:ignore="GoogleAppIndexingWarning"
         android:requestLegacyExternalStorage="true"
         android:preserveLegacyExternalStorage="true"
+        tools:replace="android:icon"
         >
 
     </application>

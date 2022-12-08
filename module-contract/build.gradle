@@ -8,11 +8,11 @@ android {
     //统一资源前缀，规范资源引用
     resourcePrefix "contract_"
 
-    sourceSets.main.jni.srcDirs = []
+//    sourceSets.main.jni.srcDirs = []
 
     sourceSets {
         main {
-            jniLibs.srcDirs = ['libs']
+            jniLibs.srcDirs = ['src/main/libs']
         }
     }
 }

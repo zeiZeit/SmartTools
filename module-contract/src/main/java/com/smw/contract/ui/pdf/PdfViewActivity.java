@@ -9,6 +9,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.gyf.immersionbar.ImmersionBar;
 import com.smw.base.activity.MvvmBaseActivity;
+import com.smw.base.bean.DownloadResult;
 import com.smw.base.utils.ToastUtil;
 import com.smw.base.bean.BaseBean;
 import com.smw.common.router.RouterActivityPath;
@@ -23,6 +24,14 @@ public class PdfViewActivity extends MvvmBaseActivity<ActivityPdfViewBinding,Pdf
     @Autowired(name = "pdf_url")
     String pdf_url;
 
+    public static void open(String fileUrl){
+        ARouter.getInstance()
+                .build(RouterActivityPath.Contract.PAGER_PDF_VIEW)
+                .withString("pdf_url",fileUrl)
+                .navigation();
+    }
+
+
     @Override
     protected void doBusiness() {
         ImmersionBar.with(this)
@@ -32,6 +41,9 @@ public class PdfViewActivity extends MvvmBaseActivity<ActivityPdfViewBinding,Pdf
                 .init();
         ARouter.getInstance().inject(this);
         setLoadSir(viewDataBinding.rlRoot);
+        viewDataBinding.ivBack.setOnClickListener(t->{
+            onBackPressed();
+        });
         viewModel.initModel();
 //        showLoading();
         if (StringUtils.isEmpty(pdf_url)){
@@ -67,7 +79,7 @@ public class PdfViewActivity extends MvvmBaseActivity<ActivityPdfViewBinding,Pdf
 
     @Override
     public void onLoadResult(BaseBean viewModel) {
-        PdfDownloadResult result = (PdfDownloadResult) viewModel;
+        DownloadResult result = (DownloadResult) viewModel;
         if (result.isHasDone()){
             Log.i("zeiZeit", "onLoadResult: "+result.getPath());
         }

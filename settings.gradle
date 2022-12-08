@@ -9,3 +9,4 @@ dependencyResolutionManagement {
         maven { url 'https://jitpack.io' }
     }
 }
+include ':library-mupdf'

@@ -7,6 +7,7 @@
     app:colorFill="@color/common_white"
     app:radiusCorner="8dp"
     android:padding="12dp"
+    android:layout_marginBottom="10dp"
     >
     <LinearLayout
         android:layout_width="match_parent"

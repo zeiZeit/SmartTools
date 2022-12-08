@@ -22,7 +22,6 @@ import com.smw.base.utils.ToastUtil;
 import com.smw.common.adapter.CommonBindingAdapters;
 import com.smw.common.global.GlobalKey;
 import com.smw.common.router.RouterActivityPath;
-import com.smw.common.views.SmoothCheckBox;
 import com.smw.contract.R;
 import com.smw.contract.data.model.ContractListItem;
 import com.smw.contract.data.model.ContractListRes;
@@ -76,6 +75,9 @@ public class ContractLsActivity extends MvvmBaseActivity <ContractActivityLsBind
                 .statusBarDarkFont(true)
                 .init();
         ARouter.getInstance().inject(this);
+        viewDataBinding.ivBack.setOnClickListener(t->{
+            onBackPressed();
+        });
         initRecycleView();
         setLoadSir(viewDataBinding.rlRoot);
         viewModel.initModel();
@@ -170,6 +172,11 @@ public class ContractLsActivity extends MvvmBaseActivity <ContractActivityLsBind
             baseViewHolder.setText(R.id.tv_create_time,item.getCreate_time());
             baseViewHolder.setText(R.id.tv_update_time,item.getUpdate_time());
             RecShapeTextView tvStatus = baseViewHolder.getView(R.id.tv_status);
+            if (item.getStatus()==2){
+                tvStatus.setText("已完成");
+            }else {
+                tvStatus.setText("签署中");
+            }
 
         }
 

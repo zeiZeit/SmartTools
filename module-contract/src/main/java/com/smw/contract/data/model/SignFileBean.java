@@ -14,7 +14,8 @@ public class SignFileBean implements Parcelable {
     private String now_sign_head;
     private int read_time;
     private int status;
-    private String template_id;
+    private int my_status;
+    private String file_id;
     private String update_time;
 
     public SignFileBean() {
@@ -29,7 +30,7 @@ public class SignFileBean implements Parcelable {
         now_sign_uuid = in.readString();
         read_time = in.readInt();
         status = in.readInt();
-        template_id = in.readString();
+        file_id = in.readString();
         update_time = in.readString();
     }
 
@@ -109,12 +110,12 @@ public class SignFileBean implements Parcelable {
         this.status = status;
     }
 
-    public String getTemplate_id() {
-        return template_id;
+    public String getFile_id() {
+        return file_id;
     }
 
-    public void setTemplate_id(String template_id) {
-        this.template_id = template_id;
+    public void setFile_id(String file_id) {
+        this.file_id = file_id;
     }
 
     public String getUpdate_time() {
@@ -140,7 +141,7 @@ public class SignFileBean implements Parcelable {
         parcel.writeString(now_sign_uuid);
         parcel.writeInt(read_time);
         parcel.writeInt(status);
-        parcel.writeString(template_id);
+        parcel.writeString(file_id);
         parcel.writeString(update_time);
     }
 
@@ -158,5 +159,13 @@ public class SignFileBean implements Parcelable {
 
     public void setNow_sign_head(String now_sign_head) {
         this.now_sign_head = now_sign_head;
+    }
+
+    public int getMy_status() {
+        return my_status;
+    }
+
+    public void setMy_status(int my_status) {
+        this.my_status = my_status;
     }
 }

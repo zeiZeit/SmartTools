@@ -1,0 +1,151 @@
+<resources>
+
+    // App
+
+    <string name="app_name">PDF View</string>
+    <string name="app_portrait">Hochformat</string>
+    <string name="app_landscape">Querformat</string>
+    <string name="app_share_file">Datei teilen mit:</string>
+
+
+    // App titles
+
+
+    // Snackbar // Toasts
+
+    <string name="toast_yes">OK</string>
+    <string name="toast_cancel">Abbrechen</string>
+    <string name="toast_successfully">PDF erfolgreich erstellt.</string>
+    <string name="toast_successfully_not">Es ist ein Fehler passiert.</string>
+    <string name="toast_open">Öffnen?</string>
+    <string name="toast_install_app">Bitte eine App installieren um die Aktion auszuführen.</string>
+    <string name="toast_noPDF">PDF-Datei auswählen oder erstellen.</string>
+    <string name="toast_extension">Keine unterstützte Dateiendung</string>
+
+
+    // Main menu
+
+    <string name="action_share">PDF teilen</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="action_share_with">PDF teilen mit:</string>
+    <string name="action_share_Text">Folgende Datei ist dem Anhang beigefügt:</string>
+
+
+    // Fragments
+
+
+    // Text fragment
+
+
+    // Image fragment
+
+
+    // Editor
+
+
+    // Dialogs
+
+    <string name="choose_title">Umbenennen</string>
+
+
+    // Settings
+
+    <string name="settings_prefApp">Über die App</string>
+
+    <string name="pref_license">Lizenz</string>
+    <string name="pref_license_summary">Die App ist komplett frei (Open Source) und unter der GPL3-Lizenz lizenziert.</string>
+
+    <string name="pref_imageQuality">Bildqualität</string>
+    <string name="pref_imageQuality_summary">Bestimme die Bildqualität. Je höher die Bildqualität umso größer werden die PDF-Dateien.</string>
+
+    <string name="pref_backup">Sicherung</string>
+    <string name="pref_backup_summary">Sollen PDF-Dateien vor dem Bearbeiten (z.B.: Hinzufügen oder Löschen von Seiten) gesichert werden?</string>
+
+    <string name="pref_folder">Eigenes Verzeichnis</string>
+    <string name="pref_folder_summary">Leer lassen, um das Standardverzeichnis (\"/Android/data/de.baumann.pdf/\") zu nutzen.
+        Gib den Pfad zum gewünschten Verzeichnis auf deiner SD-Karte ein. Der eingegebene Pfad muss mit einem \"/\" anfangen und
+        enden, wie z.B. \"/Download/PDF/\". Noch nicht vorhandene Verzeichnisse werden automatisch erstellt.</string>
+
+    <string name="action_donate">Spenden</string>
+    <string name="action_donate_summary">Wenn dir die App gefällt, würde ich mich über eine Spende (Paypal) freuen.</string>
+
+    <string name="action_changelog">Änderungen</string>
+    <string name="action_changelog_summary">Was gibt es Neues … (wird eine Internetseite öffnen)</string>
+
+    <string name="pref_notShow_title">Hilfe Dialog</string>
+    <string name="pref_notShow_title_summary">Hilfe Dialog beim Start anzeigen.</string>
+
+    <string name="action_openSettings">App Info</string>
+    <string name="action_openSettings_summary">Öffne über die Systemeinstellungen die App Info der App. Je nach Androidversion
+        kannst du dort verschiedene Einstellungen vornehmen (Speicherplatz, Netzwerkverkehr, Berechtigungen, …).</string>
+
+
+    <string-array name="listArrayImage">
+        <item>Hoch (100%)</item>
+        <item>Normal (80%)</item>
+        <item>Niedrig (60%)</item>
+    </string-array>
+
+    <string-array name="listValuesImage">
+        <item>100</item>
+        <item>80</item>
+        <item>60</item>
+    </string-array>
+
+
+    //Image cropper
+
+
+    //File chooser
+
+    <string name="choose_menu_2">Teilen</string>
+    <string name="choose_menu_3">Umbenennen</string>
+    <string name="choose_menu_4">Löschen</string>
+
+    <string name="choose_hint">Neuer Dateiname (ohne Dateiendung)</string>
+
+
+    <string name="accept">Akzeptieren</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="cannot_open_buffer">Zwischenspeicher kann nicht geöffnet werden</string>
+    <string name="cannot_open_document">Dokument kann nicht geöffnet werden</string>
+    <string name="cannot_open_document_Reason">Dokument kann nicht geöffnet werden: %1$s</string>
+    <string name="cannot_open_file_Path">Datei kann nicht geöffnet werden: %1$s</string>
+    <string name="choose_value">Wert auswählen</string>
+    <string name="copied_to_clipboard">In die Zwischenanlage kopiert</string>
+    <string name="copy_text">Text kopieren</string>
+    <string name="delete">Entfernen</string>
+    <string name="dismiss">Verwerfen</string>
+    <string name="document_has_changes_save_them_">Das Dokument wurde verändert. Sollen die Änderungen gespeichert werden?</string>
+    <string name="draw_annotation">Kommentar einfügen</string>
+    <string name="enter_password">Passwort eingeben</string>
+    <string name="fill_out_text_field">Textfeld ausfüllen</string>
+    <string name="highlight">Markieren</string>
+    <string name="ink">Farbe</string>
+    <string name="more">Mehr</string>
+    <string name="no">Nein</string>
+    <string name="no_further_occurrences_found">Keine weiteren Treffer</string>
+    <string name="no_media_hint">Die Freigabe des Speichermediums für einen PC kann es unzugänglich machen</string>
+    <string name="no_media_warning">Speichermedium nicht vorhanden</string>
+    <string name="no_text_selected">Kein Text ausgewählt</string>
+    <string name="not_supported">Nicht unterstützt</string>
+    <string name="nothing_to_save">Nichts zum Speichern</string>
+    <string name="okay">OK</string>
+    <string name="outline_title">Inhaltsverzeichnis</string>
+    <string name="parent_directory">[Eine Ebene nach oben]</string>
+    <string name="picker_title_App_Ver_Dir">%1$s %2$s: %3$s</string>
+    <string name="search">Suchen</string>
+    <string name="search_backwards">Rückwärts suchen</string>
+    <string name="search_document">Dokument durchsuchen</string>
+    <string name="search_forwards">Vorwärts suchen</string>
+    <string name="searching_">Suche…</string>
+    <string name="select_text">Text auswählen</string>
+    <string name="strike_out">Durchstreichen</string>
+    <string name="text_not_found">Text konnte nicht gefunden werden</string>
+    <string name="toggle_links">Markiere und aktiviere Verknüpfungen</string>
+    <string name="underline">Unterstreichen</string>
+    <string name="yes">Ja</string>
+    <string name="action_folderPDF">Ordner öffnen</string>
+    <string name="action_folderPDF_toast">Kein korrekter Pfad. App Verzeichnis öffnen?</string>
+
+</resources>

@@ -58,6 +58,10 @@ public class RouterActivityPath
         public static final String PAGER_CONTRACT_LIST = CONTRACT + "/ContractLs";
         /** 合同详情页 */
         public static final String PAGER_CONTRACT_DETAIL = CONTRACT + "/ContractDetail";
+        /** 合同签字页 */
+        public static final String PAGER_CONTRACT_SIGN = CONTRACT + "/ContractSign";
+        /** 合同签字页 */
+        public static final String PAGER_CONTRACT_CONFIRM = CONTRACT + "/ContractConfirm";
     }
 
 }

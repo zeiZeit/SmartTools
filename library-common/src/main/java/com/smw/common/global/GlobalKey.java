@@ -17,6 +17,9 @@ public class GlobalKey
 
         /** 上传了新的合同模板 */
         String TEMPLATE_UPLOAD = "template_upload_success";
+
+        /** 上传了新的合同模板 */
+        String CONTRACT_SIGN_FINISH = "contract_sign_finish";
     }
 
     public interface Key {

@@ -71,6 +71,9 @@ public class ContractCreateActivity extends MvvmBaseActivity <ContractActivityCo
                 .statusBarDarkFont(true)
                 .init();
         ARouter.getInstance().inject(this);
+        viewDataBinding.ivBack.setOnClickListener(t->{
+            onBackPressed();
+        });
         setLoadSir(viewDataBinding.rlRoot);
         viewModel.initModel();
         initUserRecycleView();

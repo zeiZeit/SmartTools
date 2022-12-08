@@ -20,6 +20,7 @@ import com.smw.contract.R;
 import com.smw.contract.data.model.TemplateRes;
 import com.smw.contract.data.model.TemplateFile;
 import com.smw.contract.databinding.ContractActivityMyTemplateBinding;
+import com.smw.contract.ui.pdf.PdfViewActivity;
 import com.smw.contract.ui.template.upload.TemplateUploadActivity;
 
 import java.util.ArrayList;
@@ -67,6 +68,9 @@ public class TemplateActivity extends MvvmBaseActivity <ContractActivityMyTempla
                 .statusBarDarkFont(true)
                 .init();
         ARouter.getInstance().inject(this);
+        viewDataBinding.ivBack.setOnClickListener(t->{
+            onBackPressed();
+        });
         initRecycleView();
         setLoadSir(viewDataBinding.rlRoot);
         viewModel.initModel();
@@ -92,10 +96,7 @@ public class TemplateActivity extends MvvmBaseActivity <ContractActivityMyTempla
         mAdapter.setChooseType(isChoose);
         mAdapter.setOnItemClickListener((adapter, view, position) -> {
             if (!isChoose){
-                ARouter.getInstance()
-                        .build(RouterActivityPath.Contract.PAGER_PDF_VIEW)
-                        .withString("pdf_url",((TemplateFile)adapter.getItem(position)).getFile_url())
-                        .navigation();
+                PdfViewActivity.open(((TemplateFile)adapter.getItem(position)).getFile_url());
                 return;
             }
             TemplateFile file = mAdapter.getItem(position);

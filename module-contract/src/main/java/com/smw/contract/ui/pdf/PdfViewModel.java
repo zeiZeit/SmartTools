@@ -1,12 +1,9 @@
 package com.smw.contract.ui.pdf;
 
+import com.smw.base.bean.DownloadResult;
 import com.smw.base.model.BaseModel;
-import com.smw.contract.data.model.TemplateRes;
 import com.zhouyou.http.EasyHttp;
-import com.zhouyou.http.cache.model.CacheMode;
 import com.zhouyou.http.callback.DownloadProgressCallBack;
-import com.zhouyou.http.callback.SimpleCallBack;
-import com.zhouyou.http.config.ApiServices;
 import com.zhouyou.http.exception.ApiException;
 import com.zhouyou.http.utils.HttpLog;
 
@@ -48,7 +45,7 @@ public class PdfViewModel<T> extends BaseModel<T>
                         if (done) {
                             //下载完成
                         }else {
-                            PdfDownloadResult result = new PdfDownloadResult("-",progress,false);
+                            DownloadResult result = new DownloadResult("-",progress,false);
                             loadSuccess((T)result);
                         }
 
@@ -62,7 +59,7 @@ public class PdfViewModel<T> extends BaseModel<T>
                     @Override
                     public void onComplete(String path) {
                         //下载完成，path：下载文件保存的完整路径
-                        PdfDownloadResult result = new PdfDownloadResult(path,100f,true);
+                        DownloadResult result = new DownloadResult(path,100f,true);
                         loadSuccess((T)result);
                     }
 

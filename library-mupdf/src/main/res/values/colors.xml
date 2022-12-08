@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#607d8b</color>
+    <color name="colorPrimaryDark">#455a64</color>
+    <color name="colorAccent">#ffa000</color>
+    <color name="colorPDF">#eeeeee</color>
+
+    <color name="button_normal">#00000000</color>
+    <color name="text_normal">#fafafa</color>
+
+    <color name="colorDarkTrans">#80607d8b</color>
+
+    <color name="colorAccentTrans">#80ffa000</color>
+    <color name="text_normalTrans">#80fafafa</color>
+
+</resources>
