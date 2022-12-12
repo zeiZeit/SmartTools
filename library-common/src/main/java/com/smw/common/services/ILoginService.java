@@ -48,6 +48,12 @@ public interface ILoginService extends IProvider {
     String getUserName();
 
     /**
+     * 获取用户头像
+     * @return HeadImage
+     * */
+    String getHeadImage();
+
+    /**
      * 刷新用户信息
      * */
     void refreshUserDetailInfo();

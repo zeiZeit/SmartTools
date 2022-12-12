@@ -15,6 +15,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.cy.necessaryview.shapeview.RecShapeTextView;
 import com.gyf.immersionbar.ImmersionBar;
+import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.smw.base.activity.IDataLoadView;
 import com.smw.base.activity.MvvmBaseActivity;
 import com.smw.base.bean.BaseBean;
@@ -92,7 +93,11 @@ public class ContractLsActivity extends MvvmBaseActivity <ContractActivityLsBind
             setResult(555,intent);
             finish();
         });
-
+        LiveEventBus
+                .get(GlobalKey.Event.CONTRACT_SIGN_FINISH, String.class)
+                .observeForever(s -> {
+                    refresh();
+                });
         viewModel.loadTemplate(mCurrentPage,20);
     }
 
@@ -111,11 +116,7 @@ public class ContractLsActivity extends MvvmBaseActivity <ContractActivityLsBind
         viewDataBinding.smRefresh.setEnableLoadMore(true);
         viewDataBinding.smRefresh.setEnableRefresh(true);
         viewDataBinding.smRefresh.setOnRefreshListener(refreshLayout -> {
-            mCurrentPage = 1;
-            if (mAdapter!=null){
-                mAdapter.getData().clear();
-            }
-            viewModel.loadTemplate(mCurrentPage,20);
+            refresh();
         });
         viewDataBinding.smRefresh.setOnLoadMoreListener(refreshLayout -> {
             viewModel.loadTemplate(mCurrentPage+1,20);
@@ -123,6 +124,14 @@ public class ContractLsActivity extends MvvmBaseActivity <ContractActivityLsBind
         viewDataBinding.tvUpload.setOnClickListener(t->{
             ContractCreateActivity.open();
         });
+    }
+
+    private void refresh(){
+        mCurrentPage = 1;
+        if (mAdapter!=null){
+            mAdapter.getData().clear();
+        }
+        viewModel.loadTemplate(mCurrentPage,20);
     }
 
     @Override

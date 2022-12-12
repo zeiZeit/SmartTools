@@ -37,6 +37,7 @@ public class ContractCreateModel<T> extends BaseModel<T>
         Disposable disposable = EasyHttp.post(ApiServices.Contract.TEMPLATE_CREATE)
                 .cacheKey(ApiServices.Contract.TEMPLATE_CREATE)
                 .cacheMode(CacheMode.NO_CACHE)
+                .params("contract_name",contractName)
                 .params("user_id_ls",users)
                 .params("file_id_ls",files)
                 .sign(true)

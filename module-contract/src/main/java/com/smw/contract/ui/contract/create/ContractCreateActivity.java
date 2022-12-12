@@ -11,17 +11,20 @@ import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.gyf.immersionbar.ImmersionBar;
+import com.limpoxe.support.servicemanager.ServiceManager;
 import com.smw.base.activity.MvvmBaseActivity;
 import com.smw.base.utils.ToastUtil;
 import com.smw.base.bean.BaseBean;
 
 import com.smw.common.global.GlobalKey;
 import com.smw.common.router.RouterActivityPath;
+import com.smw.common.services.ILoginService;
 import com.smw.common.utils.StringUtils;
 import com.smw.contract.R;
 import com.smw.common.contract.SearchUserBean;
 import com.smw.contract.data.model.TemplateFile;
 import com.smw.contract.databinding.ContractActivityContractCreateBinding;
+import com.smw.contract.ui.contract.list.ContractLsActivity;
 
 import org.json.JSONArray;
 
@@ -76,6 +79,10 @@ public class ContractCreateActivity extends MvvmBaseActivity <ContractActivityCo
         });
         setLoadSir(viewDataBinding.rlRoot);
         viewModel.initModel();
+        ILoginService loginService = (ILoginService) ServiceManager.getService(ILoginService.LOGIN_SERVICE_NAME);
+        uuid = loginService.getUUID();
+        userName = loginService.getUserName();
+        headImage = loginService.getToken();
         initUserRecycleView();
         initTemplateRecycleView();
         viewDataBinding.btnChooseTemplate.setOnClickListener(T->{
@@ -189,6 +196,7 @@ public class ContractCreateActivity extends MvvmBaseActivity <ContractActivityCo
     @Override
     public void onCreateContractResult(BaseBean viewModel) {
         showContent();
+        ContractLsActivity.open();
         finish();
     }
 

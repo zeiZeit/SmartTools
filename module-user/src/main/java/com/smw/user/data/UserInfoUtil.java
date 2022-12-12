@@ -85,6 +85,7 @@ public class UserInfoUtil implements ILoginService {
         return mUserInfo.getUser_name();
     }
 
+    @Override
     public String getHeadImage(){
         return mUserInfo.getHead_image();
     }
